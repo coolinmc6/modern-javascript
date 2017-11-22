@@ -1,6 +1,12 @@
 <a name='top'></a>
 # README
 
+**Related Repositories:**
+
+- [https://github.com/coolinmc6/advanced_javascript](https://github.com/coolinmc6/advanced_javascript)
+
+**Section Links:**
+
 1. [Advanced Concepts for Objects and Functions](#section-3)
 1. [Think Like a Programmer: DRY Coding](#section-4)
 1. [Working with Objects](#section-5)
@@ -18,14 +24,19 @@
 # Advanced Concepts for Objects
 
 
+
 [back to top](#top)
 <a name="section-4"></a>
 # Think Like a Programmer: DRY Coding
 
 
+
+
 [back to top](#top)
 <a name="section-5"></a>
 # Working with Objects
+
+
 
 
 [back to top](#top)
@@ -38,34 +49,45 @@
 <a name="section-7"></a>
 # Think Like a Programmer: Avoiding Globals
 
-[back to top](#top)
 
+
+[back to top](#top)
 <a name="section-8"></a>
 # The Power of Functions (Continued)
 
-[back to top](#top)
 
+
+[back to top](#top)
 <a name="section-9"></a>
 # Think Like a Programmer: The Module Pattern
 
-[back to top](#top)
 
+
+[back to top](#top)
 <a name="section-10"></a>
 # Working with Data: JavaScript Objects and JSON
 
-[back to top](#top)
 
+
+[back to top](#top)
 <a name="section-11"></a>
 # Think Like a Programmer: Approaches to Programming
 
-[back to top](#top)
 
+
+[back to top](#top)
 <a name="section-12"></a>
 # Object Oriented Programming in JavaScript
 
-[back to top](#top)
 
+
+
+[back to top](#top)
 <a name="section-13"></a>
 # Think Like a Programmer: Starting a Project
+
+
+
+
 
 [back to top](#top)
