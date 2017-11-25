@@ -161,12 +161,53 @@ obj.lastName = "Hancock";
 ## Understanding the Prototype of Functions
 
 ## Using call and apply Function Methods
+- the `call()` method => first argument sets the value of `this`, all additional 
+arguments are all the additional arguments
+- using the call method, all additional arguments are just comma separated
+- using `apply()`, the first argument is the object that becomes the value of
+`this` and the second argument is an array with all of your arguments
 
 ## Using the bind Function Method
+- bind is used to determine the value of `this` but bind creates a new function and
+already has `this` bound to a particular object
+- `var func = function.bind(this, arg1, arg2)`
+- `bind` returns a new function
+
+```js
+var morningGreet = greeting.bind(user1, "Good Morning");
+morningGreet("!");
+```
+- with `bind()`, we are attaching the user1 object and the term, "Good Morning". Now
+we can call `morningGreet()` with the punctuation only
+- that bind cannot be overwritten with `call()`. So `morningGreet.call(user2, "!")` won't
+overwrite user1 as the object
+- 
 
 ## Invoking Functions as Constructors: The Magic of new
+- The fourth method of invoking functions that is invoking functions using *new*
+- a constructor is just a function that is invoked using *new*
+- a constructor returns an object
+- the purpose of constructors is to create multiple similar objects
+- the returned objects share the same prototype which comes from the constructor
+- capitalizing the function name indicates that it should be used as a constructor
+
+```js
+var Greeting = function() {
+
+};
+
+var greet1 = new Greeting();
+
+var greet2 = new Greeting();
+
+console.log(greet1 == greet2);              // false
+console.log(greet1 instanceof Greeting);    // true
+```
 
 ## Constructor Invocation and the Value of this
+- constructor functions should be capitalized
+
+
 
 ## Higher Order Functions, Callbacks and the Problem with this
 
