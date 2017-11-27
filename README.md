@@ -10,6 +10,7 @@
 1. [Advanced Concepts for Objects and Functions](#section-3)
 1. [Think Like a Programmer: DRY Coding](#section-4)
 1. [Working with Objects](#section-5)
+  1. [ES6 Object Features](#es6-object-features)
 1. [The Power of Functions](#section-6)
 1. [Think Like a Programmer: Avoiding Globals](#section-7)
 1. [The Power of Functions (Continued)](#section-8)
@@ -352,6 +353,8 @@ console.log(obj);
 - Both throw an error if `"use strict"` is on
 - with `Object.freeze(obj)`, we cannot change the object at all
 
+[back to top](#top)
+<a name="es6-object-features"></a>
 ## ES6 Object Features
 - Object Literal Extensions
 - Object Static Functions
