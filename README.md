@@ -18,6 +18,7 @@
 1. [Think Like a Programmer: Approaches to Programming](#section-11)
 1. [Object Oriented Programming in JavaScript](#section-12)
 1. [Think Like a Programmer: Starting a Project](#section-13)
+1. [Functional Programming Concepts in JavaScript](#section-15)
 
 # Things to look up
 
@@ -219,27 +220,238 @@ console.log(greet1 instanceof Greeting);    // true
 <a name="section-4"></a>	
 # Think Like a Programmer: DRY Coding
 
+## Abstraction and DRY Coding
 
+```js
+var executeWait = function(funct, wait) {
+  var timeout, 
+      callNow = true;
+
+  return function() {
+    var thisVal = this,
+        args = arguments;
+
+    var later = function() {
+      callNow = true;
+    };
+    if(callNow) {
+      callNow = false;
+      funct.aply(thisVal, args);
+      timeout = setTimeout(later, wait);
+    }
+  };
+};
+```
 
 
 [back to top](#top)
 <a name="section-5"></a>
 # Working with Objects
 
+## Working with Objects Introduction
+- detecting object properties
+- working with property attributes
+- ES6 Additions
 
+## Detecting Properties on Objects
+- `in`
 
+```js
+// in
+if("name" in person1) {}
+
+//hasOwnProperty();
+if(person1.hasOwnProperty("name")){}
+
+// Object.keys(object);
+var properties = Object.keys(person1);
+properties; // Array of properties: firstName, lastName, email, etc.; no proto props/methods
+```
+
+- Iterating through an object:
+
+```js
+for(var prop in person1) {
+  console.log("Property Name: " + prop);
+  console.log("Value: " + person1[prop]);
+}
+```
+
+- `person1.propertyIsEnumerable("firstName"); // true`
+- `person1.propertyIsEnumerable("toString")  // false;`
+
+## Changing Property Attributes
+- by default, properties are enumerable
+
+```js
+// prevent object property from being enumerable
+// arg1 = the object itself; arg2 = the particular property; arg3 = attribute to change
+Object.defineProperty(obj, "type", {enumerable: false})
+
+// prevent object property from being deleted
+Object.defineProperty(obj, "type", {configurable: false})
+```
+- the arguments are: the object, the property to change, and an object that contains the attribute
+and the value
+
+## Making Objects Immutable
+- immutable => unable to change
+- By default, objects are mutable
+- Three things that allow us to make an object immutable:
+  - writable attribute of properties
+  - sealing an object => can't add or delete properties but properties' values can be changed
+  - freezing an object => combo of first two
+
+```js
+
+"use strict";
+
+var obj = {
+    firstName: "Steven", 
+    lastName: "Smith", 
+    startDate: "January 10, 2015",
+    type: "admin"
+};
+
+Object.defineProperty(obj, "startDate", {
+    writable: false
+});
+
+obj.firstName = "Steve";
+
+obj.startDate = "January 5, 2016";
+
+console.log(obj);
+```
+- without `"use strict"` we won't get an error but the `startDate` property will NOT be changed
+
+```js
+"use strict";
+
+var obj = {
+    firstName: "Steven", 
+    lastName: "Smith", 
+    startDate: "January 10, 2015",
+    type: "admin"
+};
+
+Object.seal(obj)
+
+// FAIL => cannot add property to sealed object
+obj.newProp = true;
+
+// FAIL => cannot delete property to sealed object
+delete obj.type;
+
+// SUCCESS => we CAN change properties, though
+obj.firstName = "Colin";
+
+console.log(obj);
+```
+- we cannot add a new property or delete one to a sealed object
+- Both throw an error if `"use strict"` is on
+- with `Object.freeze(obj)`, we cannot change the object at all
+
+## ES6 Object Features
+- Object Literal Extensions
+- Object Static Functions
+  - Object.setPrototypeOf();
+  - Object.assign();
+- *Concise Properties* allow us to avoid double typing. If we have a variable whose name is the same
+as the property that we are adding to our object, we don't need the colon and variable name at the end
+
+```js
+var multiple = 5;
+
+var obj1 = {
+    start: 1, 
+    end: 100,
+    multiple: multiple
+};
+
+// ES6
+var obj2 = {
+    start: 1, 
+    end: 1000, 
+    multiple
+}
+```
+- *Concise Methods* allows us to drop the `: function`, we can just put the function name then parens
+
+```js
+var obj1 = {
+    firstName: "Steven",
+    lastName: "Smith", 
+    fullName: function() {
+        console.log(this.firstName + " " + this.lastName);
+    }
+};
+
+// ES6
+var obj1 = {
+    firstName: "Steven",
+    lastName: "Smith", 
+    fullName() {
+        console.log(this.firstName + " " + this.lastName);
+    }
+};
+```
+- this is another way of setting the prototype of an object
+
+```js
+var objProto = {
+    fullName() {
+        console.log(this.firstName + " " + this.lastName)
+    }
+};
+
+var obj = {
+    firstName: "Steven", 
+    lastName: "Smith"
+};
+
+Object.setPrototypeOf(obj, objProto);
+```
+- if we wanted one object to have all the properties of several other objects, we can do the following:
+
+```js
+var obj = {
+    start: 0
+};
+
+var obj1 = {
+    a: 5
+};
+
+var obj2 = {
+    b: 10
+};
+
+var obj3 = {
+    c: 15
+};
+
+Object.assign(obj, obj1, obj2, obj3);
+```
 
 [back to top](#top)
 <a name="section-6"></a>
 # The Power of Functions
 
+## Immediately Invoked Function Expressions (IIFEs)
+
+## Review of Scope
+
+## Understanding Closure
 
 
 [back to top](#top)
 <a name="section-7"></a>
 # Think Like a Programmer: Avoiding Globals
 
+## Avoiding Global Variables
 
+## Using the Namespace Pattern
 
 [back to top](#top)
 <a name="section-8"></a>
@@ -251,24 +463,78 @@ console.log(greet1 instanceof Greeting);    // true
 <a name="section-9"></a>
 # Think Like a Programmer: The Module Pattern
 
+## The Module Pattern Part 1
+
+## The Module Pattern Part 2
+
+## The Module Pattern Part 3
+
+## The Module Pattern Part 4
 
 
 [back to top](#top)
 <a name="section-10"></a>
 # Working with Data: JavaScript Objects and JSON
 
+## Introduction to Working With Data
+
+## JSON Basics
+
+## Creating a JSON File
+
+## Loading a JSON File Using XMLHttpRequest
+
+## Testing on a Server
 
 
 [back to top](#top)
 <a name="section-11"></a>
 # Think Like a Programmer: Approaches to Programming
 
+## Approaches to Programming
 
 
 [back to top](#top)
 <a name="section-12"></a>
 # Object Oriented Programming in JavaScript
 
+## Introduction to Object Oriented Programming
+
+## OOP Theory
+
+## The Constructor Property
+
+## Project: Applying OOP Part 1
+
+## Project: Applying OOP Part 2
+
+## Project: Applying OOP Part 3
+
+## Project: Applying OOP Part 4
+
+## Project: Applying OOP Part 5
+
+## Project: Applying OOP Part 6
+
+## Project: Applying OOP Part 7
+
+## Project: Applying OOP Part 8
+
+## Project: Applying OOP Part 9
+
+## Project: Applying OOP Part 10
+
+## Project: Applying OOP Part 11
+
+## Enumerating Objects with the for in Loop
+
+## Private Data in Constructors
+
+## Creating Safe Constructors
+
+## Can I Modify the Built-in Prototypes
+
+## What About ES6 Classes?
 
 
 
@@ -276,8 +542,12 @@ console.log(greet1 instanceof Greeting);    // true
 <a name="section-13"></a>
 # Think Like a Programmer: Starting a Project
 
-
+## Starting a Project
 
 
 
 [back to top](#top)
+<a name="section-15"></a>
+# Functional Programming Concepts in JavaScript
+
+
