@@ -442,19 +442,189 @@ Object.assign(obj, obj1, obj2, obj3);
 # The Power of Functions
 
 ## Immediately Invoked Function Expressions (IIFEs)
+- IIFE's are used in almost every framework
+
+```js
+// Function Declaration
+function powerDecl(num) {
+  console.log(num * num);
+}
+
+// Function Expression
+var powerExp = function(num) {
+  console.log(num * num);
+}
+
+powerDecl(2)
+
+powerExp(2)
+```
+- function expressions give more flexibility
+
+```js
+
+// We can also immediately invoke a function expression:
+// Function Expression
+var powerExp = function(num) {
+  console.log(num * num);
+}(2);
+
+// Or for a Function Declaration
+(function powerDecl(num) {
+  console.log(num * num);
+}(2))
+
+// IIFE with anonymous function
+(function (num) {
+  console.log(num * num);
+}(2))
+```
+- if you only need a function once, here is an example of a quick IIFE:
+
+```js
+var sum = function (a,b) {
+    return a + b;
+}(1,2);
+
+var square = function(a) {
+    return a * a;
+}(sum);
+
+(function(print) {
+    console.log(print)
+}(square));
+```
+
 
 ## Review of Scope
+- Scope can be defined as a set of rules that determine where identifiers (variables, functions etc) 
+are accessible within your code.
+- globally scoped identifiers should be avoided
+- When JavaScript encounters an indentifier, it searches in the enclosing function for that identifier.
+If it's not there, it continues up the *scope chain* until the global scope. If not in global scope, it
+throws an error
+- One exception to functional scope is when variables are declared with the keyword `let`. 
+`let` creates block scope.
 
 ## Understanding Closure
-
+- a closure is the local variables for a function - kept alive after the function has returned
+- Closure is when a function is able to remember and access its lexical scope even when that function
+is executing outside its lexical scope
+- A closure is a function having access to the parent scope, even after the parent function has closed 
 
 [back to top](#top)
 <a name="section-7"></a>
 # Think Like a Programmer: Avoiding Globals
 
 ## Avoiding Global Variables
+- **The Problem with Global Variables**
+  - global variables can be changed anywhere
+  - global variables pollute the global namespace shared by everyone. This can cause collisions
+  - Reliance on global variables avoids better programming patterns
 
 ## Using the Namespace Pattern
+- JavaScript doesn't yet have support for namespacing
+- setting up a namespace involves setting up one global object that contains all the variables and
+functions associated with a particular page, functionality, etc.
+- In the example below, we have some code with many global variables and functions:
+
+```js
+// PRE-Namespacing
+// notice the global variables and functions
+var prompt = "Welcome,",
+    prompt2 = "How are you?",
+    prompt3 = "Good to see you again.",
+    counter = 0,
+    users = [];
+
+var greeting = function(user){
+    var greeting = prompt + " ";
+    if (newUser(user)) {
+        greeting += prompt2;
+    } else {
+        greeting += prompt3;
+    }
+    console.log(greeting);
+    counter++;
+};
+
+var newUser = function(user) {
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].toUpperCase() === user.toUpperCase()) {
+            return false;
+        }
+    }
+    addUser(user);
+    return true;
+};
+
+var addUser = function(user) {
+    users.push(user);
+};
+
+var numberOfGreetings = function() {
+    console.log("Total number of greetings: " + counter);
+};
+```
+- Here is how we fix that:
+
+```js
+// POST Namespacing
+
+// creates a global object OR sets it equal the existing MYAPP object
+var MYAPP = MYAPP || {};
+
+// we wrap the entire block of code in an IIFE that takes one variable, our global object MYAPP
+// we pass MYAPP into this IIFE down below
+(function(namespace) {
+
+  // these variables are NOT placed onto the MYAPP object - they become somewhat like a private
+  // property meaning that the internal methods have access BUT not outside this IIFE
+  // So we couldn't do: MYAPP.prompt and expect to see it
+  var prompt = "Welcome,",
+      prompt2 = "How are you?",
+      prompt3 = "Good to see you again.",
+      counter = 0,
+      users = [];
+
+  // We DO add greeting to the MYAPP object using dot notation
+  namespace.greeting = function(user){
+      var greeting = prompt + " ";
+      if (newUser(user)) {
+          greeting += prompt2;
+      } else {
+          greeting += prompt3;
+      }
+      console.log(greeting);
+      counter++;
+  };
+
+  // newUser is a essentially a "private" method here
+  var newUser = function(user) {
+      for (let i = 0; i < users.length; i++) {
+          if (users[i].toUpperCase() === user.toUpperCase()) {
+              return false;
+          }
+      }
+
+      // Remember - we are referencing the function on the namespace object, namespace.addUser
+      namespace.addUser(user);
+      return true;
+  };
+
+  // addUser is now on the global MYAPP object
+  namespace.addUser = function(user) {
+      users.push(user);
+  };
+
+  // numberOfGreetings is now on the global MYAPP object
+  namespace.numberOfGreetings = function() {
+      console.log("Total number of greetings: " + counter);
+  };
+})(MYAPP); // this is where we pass MYAPP into our IIFE
+```
+
+
 
 [back to top](#top)
 <a name="section-8"></a>
