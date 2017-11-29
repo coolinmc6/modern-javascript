@@ -630,19 +630,132 @@ var MYAPP = MYAPP || {};
 <a name="section-8"></a>
 # The Power of Functions (Continued)
 
+## Closure Exercise
+- to complete the exercise WITHOUT global variables means that we must enclose our code
+in an IIFE
 
+```js
+// IIFE Structure
+(function() {
+
+})();
+```
 
 [back to top](#top)
 <a name="section-9"></a>
 # Think Like a Programmer: The Module Pattern
+- a module is a chunk of code that handles a discrete set of tasks
+- most everything created in Node is built by creating modules
+- a module is a different way of thinking about your code => you break your code apart in a logical way
+- 
 
 ## The Module Pattern Part 1
 
 ## The Module Pattern Part 2
+- the module pattern is very similiar to the namespace pattern.
+- The namespace pattern seeks to avoid global variables, as does the module pattern
+- Advantages and Goals of the Module Pattern
+  - easier to have multiple developers working on the project
+  - the code becomes much more reusable
+  - the code is easier to understand
+  - the code is easier to manage
+- with the module pattern, we need to make some methods/properties public; if we don't, then 
+everything is private and we can't access it
+- in this part, we turn the code into an IIFE and then determine which functions are public
 
 ## The Module Pattern Part 3
+- this is where we start breaking up the code into separate files and designate them as modules
+- What parts do we want to break apart?
+- The work we did in Part 2 is technically a module, which, as of now, largely resembles the
+namespace pattern
+- We are going to end up with two different global variables: MAINAPP and UTIL
+
+```js
+var UTIL = (function(u) {
+
+  // Paste in Code for this module
+
+})(UTIL || {});
+```
+- it's not complete yet but we have to determine WHICH functions we want to make public.
+- He sets aside room at the bottom for his public functions:
+
+```js
+// Public Methods and Properties
+u.$ = $;
+u.assignEvent = assignEvent;
+// etc
+
+return u;
+```
+- notice the pattern
+
+```js
+var UTIL = (function(u) {
+
+  // Paste in Code for this string-associated functions/properties
+
+})(UTIL || {});
+```
+- notice how it is essentially the SAME code. They each start with `var UTIL = ` ...
+- they are all IIFE's
+- the `var UTIL` does not mess it up because we are passing in `UTIL || {}`. So if UTIL is
+not yet initialized, an empty object is created...if UTIL exists, we are just adding our
+methods/properties to that object
 
 ## The Module Pattern Part 4
+- a submodule could be: `UTIL.dom` or `UTIL.string`
+- `var sub = u.dom = u.dom || {}`;
+- we can then change all of our public properties/methods to make it a sub-module:
+
+```js
+// Old Code
+u.$ = $;
+u.assignEvent = assignEvent;
+// etc.
+
+// New Code
+sub.$ = $;
+sub.assignEvent = assignEvent;
+```
+- we still return the full module, `u`, but we've made those properties sub-modules
+- we do the same for the string module: `var sub = s.string = s.string || {}` and...
+
+```js
+// Public Properties and Methods
+sub.numChar = numChar;
+sub.breakOut = breakout;
+
+return s;
+```
+- we can create dependencies:
+
+```js
+// Dependencies
+var strU = u.string
+```
+- and then replace anywhere it would've been `UTIL.string.numChar` with `strU.numChar`;
+- after setting all that up, we have to then import them into our main.js file
+- what was originally:
+
+```js
+var MAINAPP = (function(nsp) {
+
+  // CODE
+
+})(MAINAPP || {});
+```
+- is now:
+
+```js
+var MAINAPP = (function(nsp, $, domU, strU) {
+
+  // CODE
+  
+})(MAINAPP || {}, UTIL.dom.$, UTIL.dom, UTIL.string);
+```
+- we then have to update the methods inside the main.js file that are referencing our string and dom
+"public" methods
 
 
 [back to top](#top)
