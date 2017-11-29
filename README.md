@@ -215,6 +215,16 @@ console.log(greet1 instanceof Greeting);    // true
 
 ## Arrow Functions
 
+## Quiz 1:
+- first-class functions => functions are treated as values and can be assigned to variables and
+passed around
+- function expressions are NOT hoisted
+- Object properties can many data types, like: Strings, Numbers, Functions, Objects, Arrays
+- you can use `in` and `hasOwnProperty` to determine if a property exists in an object
+- JavaScript objects have access to properties and methods that exist in the object's prototype chain
+- `call()` takes arguments as just a list of arguments while `apply()` takes an array of arguments
+- the `bind()` function returns a function
+- use a constructor if you want to create multiple, similar objects
 
 
 [back to top](#top)
