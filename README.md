@@ -771,6 +771,13 @@ var MAINAPP = (function(nsp, $, domU, strU) {
 [back to top](#top)
 <a name="section-10"></a>
 # Working with Data: JavaScript Objects and JSON
+- **Separation of Concerns:** Separate data from Code
+- Reasons for separating data from code
+  + availability of the data
+  + location of the data
+  + separation of concerns => keep things separate in your code that don't need to together
+  + Manageability
+  + 
 
 ## Introduction to Working With Data
 
