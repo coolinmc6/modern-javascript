@@ -771,24 +771,97 @@ var MAINAPP = (function(nsp, $, domU, strU) {
 [back to top](#top)
 <a name="section-10"></a>
 # Working with Data: JavaScript Objects and JSON
+
+## Introduction to Working With Data
 - **Separation of Concerns:** Separate data from Code
 - Reasons for separating data from code
   + availability of the data
   + location of the data
   + separation of concerns => keep things separate in your code that don't need to together
   + Manageability
-  + 
-
-## Introduction to Working With Data
+- Working with External Data Creates Two Main Needs
+  + Loading the Data
+  + Making the Data Usable
 
 ## JSON Basics
+- JSON = **J**ava**S**cript **O**bject **N**otation
+  + JSON is text structured like a JavaScript Object
+  + JSON is used to store and exchange data. You can store a JavaScript object as text
+  + You can convert JavaScript objects to JSON (stringify) and JSON to JavaScript object (parse)
+  using the JavaScript JSON Object
+- JSON Syntax
+  + Data is in name/value pairs separated by a colon
+  + the Name MUST be enclosed in **double quotes**
+  + Data is separated by commas
+  + Curly braces `{}` hold objects
+  + Square brackets `[]` hold arrays
+- JSON Values Must Be One of These Data Tyeps
+  + string (double quotes)
+  + number
+  + object
+  + array
+  + boolean
+  + null
+  + **No undefined**
+
+```js
+var json = '{"name": "Steven"}';
+console.log(json);
+var obj = JSON.parse(json);
+console.log(obj);
+var str = JSON.stringify(obj);
+console.log(str);
+```
 
 ## Creating a JSON File
+- create new JSON file: `data.json`
+
+```json
+{
+  "numQuestions": 3,
+  "randomPresentation": true,
+  "questions": [
+    {
+      "stem": "question 1",
+      "weight": 1,
+      "type": "fill-in",
+      "answer": "answer 1"
+    },
+    {
+      "stem": "question 2",
+      "weight": 1,
+      "type": "true-false",
+      "answer": "false"
+    },
+    {
+      "stem": "question 3",
+      "weight": 1,
+      "type": "true-false",
+      "answer": "false"
+    }
+  ],
+  "title": "Lesson Quiz"
+}
+```
 
 ## Loading a JSON File Using XMLHttpRequest
+- the XML HTTP request object is the heart of AJAX
+- Steps for Using the XMLHttpRequestObject
+  + Create a new object
+  + Change the Mime type to JSON
+    * if loading a local JSON file
+  + Use the open method and specify the http verb and file path
+  + Define a callback for the request
+  + Send the request
+  + **Note:** jQuery is what I use and ES6 has `fetch` now
+- 
 
 ## Testing on a Server
-
+- Setting up a Local Server
+  + Grunt
+  + Gulp
+  + CodeKit
+  + Mamp
 
 [back to top](#top)
 <a name="section-11"></a>
