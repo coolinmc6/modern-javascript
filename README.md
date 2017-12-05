@@ -868,21 +868,107 @@ console.log(str);
 # Think Like a Programmer: Approaches to Programming
 
 ## Approaches to Programming
-
+- Common Programming Paradigms
+  + Imperative
+  + Procedural
+  + Object-Oriented
+  + Functional
+- Java was written for OOP paradigm
+- JavaScript can adapt to many paradigms
+- Paradigms and Design Patterns help you organize yuor code
+- **Design pattern** - a tried and tested solution to a common programming problem. 
+It is a best practice
+  + namespace pattern, IIFE, callbacks
 
 [back to top](#top)
 <a name="section-12"></a>
 # Object Oriented Programming in JavaScript
 
 ## Introduction to Object Oriented Programming
+- Object => data and behaviors packaged together
+- In traditional OOP, you must create a class to create an object
+- In JS, when we create an object, you can also link that object to other objects (prototype chain)
+- Advantages of Using an Object Oriented Approach
+  + Reduce errors that can occur when you update your code
+  + Make your code more readable
+  + Objects can become reusable pieces so it makes your code reusable
 
 ## OOP Theory
+- Inheritance
+  + An object being able to inherit methods and properties from another object
+  + Giving one object access to another objects' methods and properties
+  + *Enables Code Reuse!**
+- Encapsulation
+  + Enclosing all functionalities of an object (data and methods) within that object, so the objects
+  internal workings are hidden from the rest of the application
+  + *Governs the Creation of Our Objects!*
+
+## Review: Setting the Prototype (L51)
+- Setting the Prototype
+  + By Default (Object) => the default JavaScript Object
+  + Constructor function
+  + Object.create(*prototype*)
+  + Object.setPrototypeOf(obj, *prototype*) (only available in ES6)
+  + Class Structure
+
+```js
+// Our Prototype
+var objProto = {
+    greet: function() {
+        console.log(this.greeting + " World!");
+    }
+}
+
+var Greeting = function(term) {
+    this.greeting = term;
+}
+
+Greeting.prototype = objProto;
+
+
+// Constructor
+var obj1a = new Greeting("Hi");
+var obj1b = new Greeting("hi");
+
+// Object.create()
+var obj2 = Object.create(objProto);
+obj2.greeting = "Hello";
+
+// Object.setPrototypeOf()
+var obj3 = {
+    greeting: 'Hello'
+};
+
+Object.setPrototypeOf(obj3, objProto);
+
+obj3.greet()
+
+```
 
 ## The Constructor Property
 
 ## Project: Applying OOP Part 1
+- quick intro to how he will explain OOP
 
 ## Project: Applying OOP Part 2
+- Question Types:
+  + multiple choice
+  + Fill-in
+- Properties
+  + type
+  + question text
+  + id
+  + distractors
+  + correct response
+  + feedback
+  + result
+- Methods
+  + populate
+  + checkAnswer
+  + displayQuestion
+  + hideQuestion
+  + displayFeedback
+  + hideFeedback
 
 ## Project: Applying OOP Part 3
 
