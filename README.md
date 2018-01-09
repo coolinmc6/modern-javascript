@@ -972,7 +972,11 @@ obj3.greet()
 
 ## Project: Applying OOP Part 3
 
+
+
 ## Project: Applying OOP Part 4
+
+
 
 ## Project: Applying OOP Part 5
 
@@ -1004,12 +1008,104 @@ obj3.greet()
 <a name="section-13"></a>
 # Think Like a Programmer: Starting a Project
 
-## Starting a Project
-
+## Starting a Project (L70)
+- make a plan on how you will proceed
+  + break apart the items that are required to complete the project
+- Write the functionality using psuedocode
+- If necessary, build a prototype
+- Begin working on small pieces
+- Test those small pieces
+- Combine the pieces
+- Test
+- Refactor
 
 
 [back to top](#top)
 <a name="section-15"></a>
 # Functional Programming Concepts in JavaScript
 
+## Functional Programming Introduction (L72)
+- "Functional programming is the process of building software by composing pure functions, 
+avoiding shared state, mutable data, and side-effects. Functional programming is declarative
+rather than imperative, and application state flows through pure functions." - Eric Elliot
+- Functional Programming Concepts
+  + Avoid Side Effects
+  + Avoid Mutations
+  + Avoid Shared State
+  + Use Pure Functions
+  + Use Function Composition
+  + Use Declarative Code Instead of Imperative Code
+
+## Avoiding Side Effects and Using Pure Functions
+- a side-effect is an observable effect outside of a function
+- If the functions below (fun1, fun2, fun3) have side-effects, how sure can you be that
+`x` won't be affected?
+
+```js
+var x = 1;
+
+fun1();
+
+console.log(x)
+
+fun2();
+
+console.log(x)
+
+fun3();
+
+console.log(x)
+
+```
+
+- Here is an example of a function with side-effects and an example without side-effects:
+
+```js
+// WITH Side-Effects
+let count = 0;
+
+let increment = function() {
+  count++;
+  return count;
+}
+
+
+// WITHOUT Side-Effects => this function does not alter anything outside of its scope
+// this is a pure function
+let increment = function(num) {
+  return num + 1;
+}
+```
+
+- What are Pure Functions?
+  + the function depends on the input provided and not on external *data that changes*
+  + the function doesn't cause side effects. It doesn't cause change beyond its scope
+  + Given the same input, the function will always return the same output
+    * notice how that isn't the case if you are simply changing an outside variable that
+    other functions can alter
+- Side Effects
+  + changing a value globally (variable, property or data structure)
+  + changing the original value of a function's argument
+  + throwing an exception
+  + printing to the screen or logging
+  + triggerin an external process
+  + invoking other functions that have side-effects
+- How can you code without side-effects? You can't => you need side effects but functional 
+programming seeks to minimize and manage them
+
+## Avoiding Shared State (L74)
+
+## Avoiding Mutable Data
+
+## Function Composition Part 1
+
+## Function Composition Part 2
+
+## Imperative Programming VS Declarative Programming
+
+## Functional Programming Example (L79)
+
+## Functional Programming Technices (L80)
+
+## Using Reduce, Map, and Filter (L81)
 
