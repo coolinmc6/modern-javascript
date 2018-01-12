@@ -1106,19 +1106,91 @@ locations at any given moment while the program is running is considered.
 or as the property of an object being passed between scopes. A shared scope can include
 global scope or closure scopes 
 
-
-
 ## Avoiding Mutable Data
+- objects in JavaScript are mutable, meaning that I can change parts of it and properties, but
+I cannot reassign it.
+- So I can sort an array but I can't do:
 
-## Function Composition Part 1
+```js
+const num = 50;
+num = 100;
+```
+- to clone an object:
 
-## Function Composition Part 2
+```js
+const cloneObj = function(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+```
+- cloning an object allows us to make data immutable
+
+
+## Function Composition Parts 1 & 2
+- Functions vs. Procedures
+- Functions in Functional Programming
+  + functions have an input
+  + functions return a value
+  + functions are simplified to a single task
+- putting functions together to accomplish a task is functional composition
+- Breadking Down Reduce
+  + `[filterArticles, breakout, capitalize, noPunct, trim]`
+  + trim(x)
+  + noPunct(trim(x))
+  + capitalize(noPunct(trim(x)))
+  + breakout(capitalize(noPunct(trim(x))))
+  + return filterArticles(breakout(capitalize(noPunct(trim(x)))))
+- Here is the compose function:
+
+```js
+// Without logs
+const compose = function(...fns) {
+    return function(x) {
+        return fns.reduceRight(function(v, f) {
+            return f(v);
+        }, x);
+    }
+};
+
+// With logs
+const compose = function(...fns) {
+    return function(x) {
+        let count = 1;
+        return fns.reduceRight(function(v, f) {
+            console.log('Iteration #' + count);
+            console.log('f = ' + f.name + ' ==> ' + f)
+            console.log('v = ' + v);
+            count++
+            return f(v);
+        }, x);
+    }
+};
+```
+
+- Compose function output:
+
+```
+Iteration #1
+f = trim ==> str => str.replace(/^\s*|\s*$/g, '')
+v = Innovation distinguishes between a leader and a follower.
+Iteration #2
+f = noPunct ==> str => str.replace(/[?.,!]/g,'')
+v = Innovation distinguishes between a leader and a follower.
+Iteration #3
+f = capitalize ==> str => str.toUpperCase()
+v = Innovation distinguishes between a leader and a follower
+Iteration #4
+f = breakout ==> str => str.split(" ")
+v = INNOVATION DISTINGUISHES BETWEEN A LEADER AND A FOLLOWER
+Iteration #5
+f = filterArticles ==> arr => arr.filter(noArticles)
+v = INNOVATION,DISTINGUISHES,BETWEEN,A,LEADER,AND,A,FOLLOWER
+```
 
 ## Imperative Programming VS Declarative Programming
 
 ## Functional Programming Example (L79)
 
-## Functional Programming Technices (L80)
+## Functional Programming Techniques (L80)
 
 ## Using Reduce, Map, and Filter (L81)
 
