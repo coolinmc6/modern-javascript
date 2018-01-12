@@ -1153,12 +1153,19 @@ const compose = function(...fns) {
 
 // With logs
 const compose = function(...fns) {
+    console.log('My functions: ', fns) // array of all the functions I passed in
+    console.log('My functions with spread: ', ...fns) // all my functions just laid out
+    console.log('\n');
     return function(x) {
+        console.log('This is x: ' + x); // is the argument passed into the original function
+        console.log('\n');
         let count = 1;
+        // it then runs reduceRight with x as starting value
         return fns.reduceRight(function(v, f) {
             console.log('Iteration #' + count);
             console.log('f = ' + f.name + ' ==> ' + f)
             console.log('v = ' + v);
+            console.log('\n');
             count++
             return f(v);
         }, x);
@@ -1169,22 +1176,40 @@ const compose = function(...fns) {
 - Compose function output:
 
 ```
+My functions:  (5) [ƒ, ƒ, ƒ, ƒ, ƒ]
+My functions with spread:  arr => arr.filter(noArticles) str => str.split(" ") str => str.toUpperCase() str => str.replace(/[?.,!]/g,'') str => str.replace(/^\s*|\s*$/g, '')
+
+
+This is x: Innovation distinguishes between a leader and a follower.
+
+
 Iteration #1
 f = trim ==> str => str.replace(/^\s*|\s*$/g, '')
 v = Innovation distinguishes between a leader and a follower.
+
+
 Iteration #2
 f = noPunct ==> str => str.replace(/[?.,!]/g,'')
 v = Innovation distinguishes between a leader and a follower.
+
+
 Iteration #3
 f = capitalize ==> str => str.toUpperCase()
 v = Innovation distinguishes between a leader and a follower
+
+
 Iteration #4
 f = breakout ==> str => str.split(" ")
 v = INNOVATION DISTINGUISHES BETWEEN A LEADER AND A FOLLOWER
+
+
 Iteration #5
 f = filterArticles ==> arr => arr.filter(noArticles)
 v = INNOVATION,DISTINGUISHES,BETWEEN,A,LEADER,AND,A,FOLLOWER
 ```
+
+- see `L77-functional-programming/Composition2-final` directory for more. Pipe and Compose
+functions make a lot more sense now
 
 ## Imperative Programming VS Declarative Programming
 

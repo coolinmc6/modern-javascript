@@ -23,12 +23,18 @@ Compose
 
 */
 const compose = function(...fns) {
+    console.log('My functions: ', fns)
+    console.log('My functions with spread: ', ...fns)
+    console.log('\n');
     return function(x) {
+        console.log('This is x: ' + x);
+        console.log('\n');
         let count = 1;
         return fns.reduceRight(function(v, f) {
             console.log('Iteration #' + count);
             console.log('f = ' + f.name + ' ==> ' + f)
             console.log('v = ' + v);
+            console.log('\n');
             count++
             return f(v);
         }, x);
