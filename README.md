@@ -1094,6 +1094,14 @@ let increment = function(num) {
 programming seeks to minimize and manage them
 
 ## Avoiding Shared State (L74)
+- state, generally, refers to the current condition of something
+> A program is considered stateful if it is designed to remember data from events or user
+interactions. The remembered information is called the state of program.
+> A JavaScript program stores data in variabels and objects. The contents of these storage
+locations at any given moment while the program is running is considered.
+> Shared state is any variable, object, or memory space that exists in a shared scope, 
+or as the property of an object being passed between scopes. A shared scope can include
+global scope or closure scopes 
 
 ## Avoiding Mutable Data
 
