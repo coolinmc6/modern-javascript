@@ -1212,10 +1212,46 @@ v = INNOVATION,DISTINGUISHES,BETWEEN,A,LEADER,AND,A,FOLLOWER
 functions make a lot more sense now
 
 ## Imperative Programming VS Declarative Programming
+- Imperative programming is a programming style that tells the computer how to accomplish some
+task
+- Declarative programming expresses the logic of a program without identifying the control flow.
+Control flow is abstracted away, so declarative code only needs to specify what to do
+
+```js
+// declarative
+return fns.reduce(function(v, f) {
+  return f(v);
+}, x);
+
+// imperative
+let result;
+for(let i = 0; i < fns.length; i++) {
+  if(i === 0) {
+    result = fns[i](x);
+  }
+  result = fns[i](result)
+}
+```
+
 
 ## Functional Programming Example (L79)
+
+## Quiz
+
 
 ## Functional Programming Techniques (L80)
 
 ## Using Reduce, Map, and Filter (L81)
+- None of the methods reduce, map or filter alter the array
+- reduce and reduceRight: combines the elements of an array using the function you specify
+- map passes each element of the array to the function you provided and returns a new array that 
+consists of the values returned by that function
+- filter returns a new array that is a subset of the existing array
+- 
+
+
+
+
+
+
 
