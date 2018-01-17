@@ -1,6 +1,15 @@
 <a name='top'></a>
 # README
 
+**Next Steps**
+- Redo Section 12 with notes (OOP in JS) => complete all exercises and follow along, take notes
+- Revisit the Module Pattern (Section 9)
+  + get notes and understand the basics of the module pattern
+  + complete exercises
+  + create your own module and understand it
++ Complete Closure and Namespace exercises (Section 8)
++ Wrap-up remaining exercises
+
 **Related Repositories:**
 
 - [https://github.com/coolinmc6/advanced_javascript](https://github.com/coolinmc6/advanced_javascript)
@@ -1248,6 +1257,81 @@ for(let i = 0; i < fns.length; i++) {
 consists of the values returned by that function
 - filter returns a new array that is a subset of the existing array
 - 
+
+```js
+
+// Pipe
+const pipe = function(...fns) {
+  return function(x) {
+    return fns.reduce(function(v, f) {
+      return f(v);
+    }, x);
+  }
+};
+
+```
+
+## Getting Your Feet Wet With Currying (L83)
+
+- Arity refers to the number of parameters a function has
+- `function test(num1, num2)` => arity of 2
+- `let test = function(arr,val,index) {}` => arity of 3
+- Functions with arity of 1 can be composed together
+- Easy to understand example of currying:
+
+```js
+const curryGreeting = function(greeting) {
+  return function(name) {
+    console.log(greeting + name);
+  }
+}
+
+const welcomeGreet = curryGreeting('Welcome');
+
+welcomeGreet('Steve');
+welcomeGreet('Mary');
+```
+- this makes the code more reusable as we don't have to hardcode "Welcome" into the
+greeting function.
+- We create a second function called `welcomeGreet` which only takes one parameter, a name
+
+## Understanding Recursion (L84)
+- Recursion is a function that calls itself
+
+```js
+const factorial = function(num) {
+  if(num == 1) {
+    return 1;
+  }
+  return num * factorial(num - 1);
+}
+
+// Factorial with arrow function
+const factorial2 = num => (num ==== 1) ? 1 : num * factorial(num - 1);
+```
+
+
+## Functional Libraries for JavaScript
+- Ramda 
+- Lodash
+  + based upon underscore
+- Immutable
+- functional.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
