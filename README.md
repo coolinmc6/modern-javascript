@@ -97,7 +97,7 @@ console.log(object2.firstName)  // Steve
 ```
   - this is an example of copying by reference
 
-## First Class Functions
+## First Class Functions (L9)
 
 ```js
 var sum = function(x, y) {
@@ -116,7 +116,7 @@ run(function(x,y) {
 ```
 - being able to pass around functions is a very useful tool
 
-## Invoking Functions	
+## Invoking Functions	(L10)
 - Four Ways to Invoke a Function:
   - as a function
   - as a method
@@ -194,7 +194,7 @@ we can call `morningGreet()` with the punctuation only
 overwrite user1 as the object
 - 
 
-## Invoking Functions as Constructors: The Magic of new
+## Invoking Functions as Constructors: The Magic of new (L20)
 - The fourth method of invoking functions that is invoking functions using *new*
 - a constructor is just a function that is invoked using *new*
 - a constructor returns an object
@@ -222,7 +222,7 @@ console.log(greet1 instanceof Greeting);    // true
 
 ## Higher Order Functions, Callbacks and the Problem with this
 
-## Arrow Functions
+## Arrow Functions (L23)
 
 ## Quiz 1:
 - first-class functions => functions are treated as values and can be assigned to variables and
@@ -240,7 +240,7 @@ passed around
 <a name="section-4"></a>	
 # Think Like a Programmer: DRY Coding
 
-## Abstraction and DRY Coding
+## Abstraction and DRY Coding (L25)
 
 ```js
 var executeWait = function(funct, wait) {
@@ -273,7 +273,7 @@ var executeWait = function(funct, wait) {
 - working with property attributes
 - ES6 Additions
 
-## Detecting Properties on Objects
+## Detecting Properties on Objects (L28)
 - `in`
 
 ```js
@@ -460,7 +460,7 @@ Object.assign(obj, obj1, obj2, obj3);
 <a name="section-6"></a>
 # The Power of Functions
 
-## Immediately Invoked Function Expressions (IIFEs)
+## Immediately Invoked Function Expressions (IIFEs) (L33)
 - IIFE's are used in almost every framework
 
 ```js
@@ -525,7 +525,7 @@ throws an error
 - One exception to functional scope is when variables are declared with the keyword `let`. 
 `let` creates block scope.
 
-## Understanding Closure
+## Understanding Closure (L35)
 - a closure is the local variables for a function - kept alive after the function has returned
 - Closure is when a function is able to remember and access its lexical scope even when that function
 is executing outside its lexical scope
@@ -535,13 +535,13 @@ is executing outside its lexical scope
 <a name="section-7"></a>
 # Think Like a Programmer: Avoiding Globals
 
-## Avoiding Global Variables
+## Avoiding Global Variables (L36)
 - **The Problem with Global Variables**
   - global variables can be changed anywhere
   - global variables pollute the global namespace shared by everyone. This can cause collisions
   - Reliance on global variables avoids better programming patterns
 
-## Using the Namespace Pattern
+## Using the Namespace Pattern (L37)
 - JavaScript doesn't yet have support for namespacing
 - setting up a namespace involves setting up one global object that contains all the variables and
 functions associated with a particular page, functionality, etc.
@@ -649,7 +649,7 @@ var MYAPP = MYAPP || {};
 <a name="section-8"></a>
 # The Power of Functions (Continued)
 
-## Closure Exercise
+## Exercise 4: Closure Exercise
 - to complete the exercise WITHOUT global variables means that we must enclose our code
 in an IIFE
 
@@ -659,6 +659,30 @@ in an IIFE
 
 })();
 ```
+- this is what I ultimately came up with:
+
+```js
+
+(function() {
+  var elem = document.querySelector('#logo');
+
+  var clicked = false;
+
+  elem.addEventListener('click', function() {
+    if(!clicked) {
+      console.log('this is the first time youve clicked on this')
+      clicked = true;
+    } else {
+      console.log('You have already clicked on this');
+    }
+  })  
+})();
+```
+- Avoiding globals seems to be as easy as just wrapping it in an IIFE.
+
+## Exercise 5: Namespace Pattern Exercise
+
+
 
 [back to top](#top)
 <a name="section-9"></a>
