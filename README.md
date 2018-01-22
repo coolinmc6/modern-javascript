@@ -746,7 +746,7 @@ var UTIL = (function(u) {
 not yet initialized, an empty object is created...if UTIL exists, we are just adding our
 methods/properties to that object
 
-## The Module Pattern Part 4
+## The Module Pattern Part 4 (L42)
 - a submodule could be: `UTIL.dom` or `UTIL.string`
 - `var sub = u.dom = u.dom || {}`;
 - we can then change all of our public properties/methods to make it a sub-module:
@@ -799,6 +799,79 @@ var MAINAPP = (function(nsp, $, domU, strU) {
 ```
 - we then have to update the methods inside the main.js file that are referencing our string and dom
 "public" methods
+
+## Module Pattern Exercise 6
+
+## Module Pattern Exercise 7
+
+- The module pattern isn't that difficult once you see how they are fitting together and understand
+what a module is.
+- A module is an anonymous function (that's how we prevent it from being "global") that takes an
+argument which is the name of our global variable, MAINAPP.
+- Notice how both the MAINAPP (the contents of main.js) and the sub-modules all look almost
+the same. This is the basic setup:
+
+```js
+// main.js => Our MAINAPP global variable
+var MAINAPP = (function(nsp) {
+
+  return nsp;
+})(MAINAPP || {});
+
+// Our sub-modules' basic setup
+var MAINAPP = (function(app) {
+
+  return app;
+})(MAINAPP || {});
+
+```
+  - the only difference is that we use `nsp` to indicate that MAINAPP here is our namespace and I guess
+  implying that this is the main file for our app
+- This is how we create a module:
+  - We start our first module almost like we are defining the actual "MAINAPP"
+  - It is an anonymous function that we pass in either 'MAINAPP' or a blank object if
+  MAINAPP does not exist.
+  - the argument MAINAPP || {} is called 'app' in our anonymous function and we return it at the end
+- Because we want to define this as a sub-module, we use 'sub' and set it equal to app.dom 
+which equals app.dom || {}
+- So now, we have all these private functions and a sub module with nothing on it. We can't use '$'
+outside of this sub-module UNTIL we create the public methods section. That's where we make our
+functions properties of our sub-module
+
+```js
+var sub = app.dom = app.dom || {};
+```
+
+- the above pattern sets 'sub' equal to app.dom (which is we want to call our sub-module) which
+will equal app.dom (if it exists) OR an empty object
+- after we define our sub module, have to define our public methods or methods that we want
+available outside or our sub-module. For example, `var func = function(){ /* code */ }` is 
+NOT available outside of this sub-module. Here is an example of defining our public methods:
+
+```js
+
+// Public Methods
+sub.$ = $;
+sub.assignEvent = assignEvent;
+sub.data = data;
+sub.addClass = addClass;
+sub.removeClass = removeClass;
+
+```
+  - what you don't see is that above those assignments, each of those functions are defined using
+  `var`, so they are essentially private until they are made public using the code above.
+- Next we have to think about creating dependencies. We need dependencies because if we use
+a method from another module, we'd have to type something like `app.dom.addClass`. Instead, near the
+top of sub-module, we can do something like this:
+
+```js
+var str = app.string,
+    dom = app.dom,
+    $ = app.dom.$
+```
+  - now, in our sub-module, anywhere we see a dom sub-module method, we can just `dom.METHOD` and
+  not `app.dom.METHOD`
+
 
 
 [back to top](#top)
