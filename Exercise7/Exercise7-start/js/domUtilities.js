@@ -102,7 +102,7 @@ var MAINAPP = (function(app) {
 	        }
 	    };
 
-	    // Public
+	    // Public Methods
 	    sub.$ = $;
 	    sub.assignEvent = assignEvent;
 	    sub.data = data;
