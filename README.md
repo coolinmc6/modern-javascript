@@ -36,6 +36,8 @@
 
 <a name="section-3"></a>
 # Advanced Concepts for Objects
+
+## Advanced Concepts for Functions and Objects (L6)
 - Functions are Objects
 - The object is the fundamental datatype in JavaScript
 - Everything except the Primitive datatypes are Objects
@@ -70,7 +72,7 @@ var bar = function() {
   in JavaScript), meaning that you can invoke the function before is has been defined
   - Function expressions are not hoisted
 
-## Functions are Objects
+## Functions are Objects (L8)
 
 ```js
 var report1 = function(val) {
