@@ -1002,6 +1002,7 @@ It is a best practice
   + Make your code more readable
   + Objects can become reusable pieces so it makes your code reusable
 
+[back to top](#top)
 ## OOP Theory (L50)
 - Inheritance
   + An object being able to inherit methods and properties from another object
@@ -1053,9 +1054,10 @@ Object.setPrototypeOf(obj3, objProto);
 obj3.greet()
 
 ```
-
+[back to top](#top)
 ## The Constructor Property (L52)
 
+[back to top](#top)
 ## Project: Applying OOP Part 1 (L53)
 - quick intro to how he will explain OOP
 - **CM:** on trying to load the page, we get an error - can't find content.json file
@@ -1063,6 +1065,7 @@ obj3.greet()
 - Given that there are four questions, this is ripe for OOP
 - We'll use JSON to load the questions
 
+[back to top](#top)
 ## Project: Applying OOP Part 2 (L54)
 - Question Types:
   + multiple choice
@@ -1088,35 +1091,48 @@ obj3.greet()
 ## Project: Applying OOP Part 3 (L55)
 
 
-
+[back to top](#top)
 ## Project: Applying OOP Part 4 (L56)
 
 
 
+[back to top](#top)
 ## Project: Applying OOP Part 5 (L57)
 
+[back to top](#top)
 ## Project: Applying OOP Part 6 (L58)
 
+[back to top](#top)
 ## Project: Applying OOP Part 7 (L59)
 
+[back to top](#top)
 ## Project: Applying OOP Part 8 (L60)
 
+[back to top](#top)
 ## Project: Applying OOP Part 9 (L61)
 
+[back to top](#top)
 ## Project: Applying OOP Part 10 (L62)
 
+[back to top](#top)
 ## Project: Applying OOP Part 11 - Wrap Up (L63)
 
+[back to top](#top)
 ## OOP: Follow Up Topics (L64)
 
+[back to top](#top)
 ## Enumerating Objects with the for in Loop (L65)
 
+[back to top](#top)
 ## Private Data in Constructors (L66)
 
+[back to top](#top)
 ## Creating Safe Constructors (L67)
 
+[back to top](#top)
 ## Can I Modify the Built-in Prototypes (L68)
 
+[back to top](#top)
 ## What About ES6 Classes? (L69)
 
 
@@ -1210,6 +1226,7 @@ let increment = function(num) {
 - How can you code without side-effects? You can't => you need side effects but functional 
 programming seeks to minimize and manage them
 
+[back to top](#top)
 ## Avoiding Shared State (L74)
 - state, generally, refers to the current condition of something
 
@@ -1223,6 +1240,7 @@ locations at any given moment while the program is running is considered.
 or as the property of an object being passed between scopes. A shared scope can include
 global scope or closure scopes 
 
+[back to top](#top)
 ## Avoiding Mutable Data
 - objects in JavaScript are mutable, meaning that I can change parts of it and properties, but
 I cannot reassign it.
@@ -1242,6 +1260,7 @@ const cloneObj = function(obj) {
 - cloning an object allows us to make data immutable
 
 
+[back to top](#top)
 ## Function Composition Parts 1 & 2
 - Functions vs. Procedures
 - Functions in Functional Programming
@@ -1328,6 +1347,7 @@ v = INNOVATION,DISTINGUISHES,BETWEEN,A,LEADER,AND,A,FOLLOWER
 - see `L77-functional-programming/Composition2-final` directory for more. Pipe and Compose
 functions make a lot more sense now
 
+[back to top](#top)
 ## Imperative Programming VS Declarative Programming
 - Imperative programming is a programming style that tells the computer how to accomplish some
 task
@@ -1351,13 +1371,16 @@ for(let i = 0; i < fns.length; i++) {
 ```
 
 
+[back to top](#top)
 ## Functional Programming Example (L79)
 
 ## Quiz
 
 
+[back to top](#top)
 ## Functional Programming Techniques (L80)
 
+[back to top](#top)
 ## Using Reduce, Map, and Filter (L81)
 - None of the methods reduce, map or filter alter the array
 - reduce and reduceRight: combines the elements of an array using the function you specify
@@ -1379,6 +1402,7 @@ const pipe = function(...fns) {
 
 ```
 
+[back to top](#top)
 ## Getting Your Feet Wet With Currying (L83)
 
 - Arity refers to the number of parameters a function has
@@ -1403,6 +1427,7 @@ welcomeGreet('Mary');
 greeting function.
 - We create a second function called `welcomeGreet` which only takes one parameter, a name
 
+[back to top](#top)
 ## Understanding Recursion (L84)
 - Recursion is a function that calls itself
 
@@ -1419,6 +1444,7 @@ const factorial2 = num => (num ==== 1) ? 1 : num * factorial(num - 1);
 ```
 
 
+[back to top](#top)
 ## Functional Libraries for JavaScript
 - Ramda 
 - Lodash
