@@ -962,18 +962,21 @@ console.log(str);
   + **Note:** jQuery is what I use and ES6 has `fetch` now
 - 
 
-## Testing on a Server
+## Testing on a Server (L47)
 - Setting up a Local Server
   + Grunt
   + Gulp
   + CodeKit
   + Mamp
 
+## Exercise 8: JSON Data
+
+
 [back to top](#top)
 <a name="section-11"></a>
 # Think Like a Programmer: Approaches to Programming
 
-## Approaches to Programming
+## Approaches to Programming (L48)
 - Common Programming Paradigms
   + Imperative
   + Procedural
@@ -990,7 +993,7 @@ It is a best practice
 <a name="section-12"></a>
 # Object Oriented Programming in JavaScript
 
-## Introduction to Object Oriented Programming
+## Introduction to Object Oriented Programming (L49)
 - Object => data and behaviors packaged together
 - In traditional OOP, you must create a class to create an object
 - In JS, when we create an object, you can also link that object to other objects (prototype chain)
@@ -999,7 +1002,7 @@ It is a best practice
   + Make your code more readable
   + Objects can become reusable pieces so it makes your code reusable
 
-## OOP Theory
+## OOP Theory (L50)
 - Inheritance
   + An object being able to inherit methods and properties from another object
   + Giving one object access to another objects' methods and properties
@@ -1051,12 +1054,16 @@ obj3.greet()
 
 ```
 
-## The Constructor Property
+## The Constructor Property (L52)
 
-## Project: Applying OOP Part 1
+## Project: Applying OOP Part 1 (L53)
 - quick intro to how he will explain OOP
+- **CM:** on trying to load the page, we get an error - can't find content.json file
+  + I fixed it...
+- Given that there are four questions, this is ripe for OOP
+- We'll use JSON to load the questions
 
-## Project: Applying OOP Part 2
+## Project: Applying OOP Part 2 (L54)
 - Question Types:
   + multiple choice
   + Fill-in
@@ -1076,37 +1083,41 @@ obj3.greet()
   + displayFeedback
   + hideFeedback
 
-## Project: Applying OOP Part 3
+- We also walked through the code...Part 3 is probably where we start actually coding
+
+## Project: Applying OOP Part 3 (L55)
 
 
 
-## Project: Applying OOP Part 4
+## Project: Applying OOP Part 4 (L56)
 
 
 
-## Project: Applying OOP Part 5
+## Project: Applying OOP Part 5 (L57)
 
-## Project: Applying OOP Part 6
+## Project: Applying OOP Part 6 (L58)
 
-## Project: Applying OOP Part 7
+## Project: Applying OOP Part 7 (L59)
 
-## Project: Applying OOP Part 8
+## Project: Applying OOP Part 8 (L60)
 
-## Project: Applying OOP Part 9
+## Project: Applying OOP Part 9 (L61)
 
-## Project: Applying OOP Part 10
+## Project: Applying OOP Part 10 (L62)
 
-## Project: Applying OOP Part 11
+## Project: Applying OOP Part 11 - Wrap Up (L63)
 
-## Enumerating Objects with the for in Loop
+## OOP: Follow Up Topics (L64)
 
-## Private Data in Constructors
+## Enumerating Objects with the for in Loop (L65)
 
-## Creating Safe Constructors
+## Private Data in Constructors (L66)
 
-## Can I Modify the Built-in Prototypes
+## Creating Safe Constructors (L67)
 
-## What About ES6 Classes?
+## Can I Modify the Built-in Prototypes (L68)
+
+## What About ES6 Classes? (L69)
 
 
 
