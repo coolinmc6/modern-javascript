@@ -1114,16 +1114,46 @@ obj3.greet()
 ## Project: Applying OOP Part 9 (L61)
 
 [back to top](#top)
-## Project: Applying OOP Part 10 (L62)
+## Project: Applying OOP Part 10 - Getters and Setters (L62)
+- Accessor Properties
+  + Accessor properties don't contain a value. Instead they define a function that is called
+  when the property is read from or written to
+- Defining a Getter or Setter Property (a subset of Accessor properties)
+  + you can define one or the other or both
+  + A "getter" returns a value
+  + A "setter" sets or defines a value
+  + get propertyName() {}
+  + set propertyName() {}
+  + obj.propertyName
+  + obj.propertyName = value
 
 [back to top](#top)
 ## Project: Applying OOP Part 11 - Wrap Up (L63)
+- we covered inheritance and we have applied it
+- we used both constructors AND object.create
+- solving a coding problem with design
+- `this` binding and closure
+- accessor properties: getters and setters
+- Things You Can Work On:
+  + issue with no response =>
+  + Make fill-in questions more flexible
+  + create a multiple correct question type (i.e. checkboxes)
+  + create a results screen
+  + Refactor the current code
 
 [back to top](#top)
 ## OOP: Follow Up Topics (L64)
+- text about following lectures
 
 [back to top](#top)
 ## Enumerating Objects with the for in Loop (L65)
+- the for in loop to iterate over non-array objects. Even you can use a for in loop on arrays,
+it is recommended to use a normal for loop
+- the properties displayed may include properties from the prototype chain
+- the for in loop will only display enumerable properties; the enumerable attribute of a
+property must be set to true
+- you cannot rely on the order the properties are displayed
+
 
 [back to top](#top)
 ## Private Data in Constructors (L66)

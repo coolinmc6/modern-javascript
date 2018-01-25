@@ -23,7 +23,7 @@
             "feedback": {
                 "noAnswer": "Please provide an answer first.",
                 "correctAnswer": "Well done! That is the correct response.",
-                "wrongAnswer": "Sorry, that is inccorrect. let allows you to declare block-scoped variables."
+                "wrongAnswer": "Sorry, that is incorrect. let allows you to declare block-scoped variables."
             },
             "weight": 1
         },
@@ -36,7 +36,7 @@
             "feedback": {
                 "noAnswer": "Please provide an answer first.",
                 "correctAnswer": "Well done! That is the correct response.",
-                "wrongAnswer": "Sorry, that is inccorrect."
+                "wrongAnswer": "Sorry, that is incorrect."
             },
             "weight": 1
         },

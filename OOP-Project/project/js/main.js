@@ -34,8 +34,7 @@ var MAINAPP = (function(nsp, $, domU, strU) {
             questionsArray[i] = new Question(questionsArray[i]);
         }
         console.log(questionsArray);
-        questionsArray[0].populateTheQuestion();
-        questionsArray[0].displayQuestion();
+        setUpNavigation();
     },
 
     initQuiz = function() {
@@ -45,15 +44,20 @@ var MAINAPP = (function(nsp, $, domU, strU) {
     // Setup Quesions
     var Question = function(obj) {
 
-        //Transfer Data - COPY #1
-        this.type = obj.type;
         this.questionDiv = (obj.type === "true-false") ? "multi-choice" : obj.type; // COPY #3
-        this.id = obj.id;
-        this.questionText = obj.questionText;
-        this.distractorText = obj.distractors;
-        this.correctResp = obj.correctResp;
-        this.feedback = obj.feedback;
-        this.weight = obj.weight;
+        //Transfer Data - COPY #1
+        
+        // this.type = obj.type;
+        // this.id = obj.id;
+        // this.questionText = obj.questionText;
+        // this.distractorText = obj.distractors;
+        // this.correctResp = obj.correctResp;
+        // this.feedback = obj.feedback;
+        // this.weight = obj.weight;
+        for (let i in obj) {
+            this[i] = obj[i];
+        }
+
         this.result = "no-answer";
         this.studentResp = "";
         this.correct = false;
@@ -170,7 +174,64 @@ var MAINAPP = (function(nsp, $, domU, strU) {
 
     };
 
+    // Setup Navigation Object
+    var setUpNavigation = function() {
+        var cQuestion = 0;
 
+        // COPY #9
+        navigationProto = {
+            questionsArray: questionsArray,
+            totalQuestions: questionsArray.length,
+            hideQuestion: function() {
+                var curQuestion = this.questionsArray[this.currentQuestion];
+                curQuestion.hideQuestion();
+            },
+            showQuestion: function() {
+                var newQuestion = this.questionsArray[this.currentQuestion];
+                newQuestion.hideFeedback();
+                newQuestion.populateTheQuestion();
+                newQuestion.displayQuestion();
+            },
+            get currentQuestion() {
+                return cQuestion;
+            },
+            set currentQuestion(value) {
+                cQuestion = value;
+            }
+        };
+
+        nextBtn = Object.create(navigationProto);
+        nextBtn.goNext = function(e) {
+            if(this.currentQuestion < this.totalQuestions - 1) {
+                this.hideQuestion();
+                this.currentQuestion = this.currentQuestion + 1;
+                this.showQuestion();
+
+            }
+        }
+
+        prevBtn = Object.create(navigationProto);
+        prevBtn.goPrev = function(e) {
+            if (this.currentQuestion > 0){
+                this.hideQuestion();
+                this.currentQuestion = this.currentQuestion - 1;
+                this.showQuestion();
+            }
+        };
+
+        $('.btn-prev')[0].addEventListener("click", function(e) {
+            prevBtn.goPrev(e);
+        });
+
+        $('.btn-next')[0].addEventListener("click", function(e) {
+            nextBtn.goNext(e);
+        });
+
+        navigationProto.showQuestion();
+
+        nsp.prevBtn = prevBtn;
+        nsp.nextBtn = nextBtn;
+    }
 
     /*
     Setup
