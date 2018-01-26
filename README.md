@@ -1161,12 +1161,51 @@ property must be set to true
 [back to top](#top)
 ## Creating Safe Constructors (L67)
 
+- A safe constructor helps us avoid creating global variables. For example, the code
+`var user1 = Users("Sam", "Smith")` results in a firstName and lastName property
+being created on the global object. This occurs because we forgot the `new` keyword
+- This is the "unsafe" constructor:
+
+```js
+var Users = function(fName, lName) {
+    this.firstName = fName;
+    this.lastName = lName;
+};
+
+var user1 = Users("Sam", "Smith");
+
+var user2 = new Users("Tom", "Smith");
+```
+
+- The code below makes sure that `this` refers to the Users object and not the global
+object:
+
+```js
+var Users = function(fName, lName) {
+    if (this instanceof Users) {
+        this.firstName = fName;
+        this.lastName = lName;
+    } else {
+        return new Users(fName, lName);
+    }
+};
+
+var user1 = Users("Sam", "Smith");
+
+var user2 = new Users("Tom", "Smith");
+```
+- so even if you forget the 'new' keyword, it still creates a new instance of Users
+
 [back to top](#top)
 ## Can I Modify the Built-in Prototypes (L68)
+- he recommends **NOT** changing the built-in prototype
+- changing the prototype can throw off other developers
 
 [back to top](#top)
 ## What About ES6 Classes? (L69)
-
+- classes are essentially "syntactic sugar" as JavaScript hasn't really changed
+- JavaScript still uses prototypal inheritance, using the new "class" keyword in ES6 hasn't
+changed that
 
 
 [back to top](#top)
